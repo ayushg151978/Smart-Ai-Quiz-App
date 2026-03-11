@@ -1,0 +1,140 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>SyntaX Smart Quiz AI</title>
+  <link rel="stylesheet" href="/index.css">
+</head>
+
+<body>
+  <div id="app">
+    <!-- Config View -->
+    <section id="config-view" class="view active">
+      <div class="container">
+        <header>
+          <div class="icon-box">🧠</div>
+          <h1>Smart Quiz AI</h1>
+          <p>Generate a custom quiz on any topic using Gemini AI</p>
+        </header>
+
+        <div class="card">
+          <div class="input-group">
+            <label>Quiz Topic</label>
+            <input type="text" id="topic-input" placeholder="e.g. Java Programming, Organic Chemistry...">
+          </div>
+
+          <div class="grid-3">
+            <div class="input-group">
+              <label>Questions</label>
+       <input type="number" id="num-questions" min="1" max="50" placeholder="Enter number of questions">
+            </div>
+            <div class="input-group">
+              <label>Difficulty</label>
+              <select id="difficulty">
+                <option value="Easy">Beginner</option>
+                <option value="Medium" selected>Intermediate</option>
+                <option value="Hard">Advanced</option>
+              </select>
+            </div>
+            <div class="input-group">
+              <label>Time (Mins)</label>
+       <input type="number" id="time-limit" min="1" placeholder="Enter time in minutes">
+            </div>
+          </div>
+
+          <button id="start-btn" class="primary-btn">
+            <span class="btn-text">Generate Quiz</span>
+            <span class="loader hidden"></span>
+          </button>
+        </div>
+
+        <button id="history-btn" class="text-btn">
+          <span>📜 View Quiz History</span>
+        </button>
+      </div>
+    </section>
+
+    <!-- Quiz View -->
+    <section id="quiz-view" class="view">
+      <div class="container">
+        <div class="quiz-header">
+          <div class="quiz-info">
+            <div id="progress-circle" class="circle">0/0</div>
+            <div>
+              <h3 id="display-topic">Topic</h3>
+              <p id="display-difficulty">Difficulty</p>
+            </div>
+          </div>
+          <div id="timer" class="timer-box">0:00</div>
+        </div>
+
+        <div class="progress-bar">
+          <div id="progress-fill"></div>
+        </div>
+
+        <div class="card quiz-card">
+          <h2 id="question-text">Question loading...</h2>
+          <div id="options-container" class="options-grid"></div>
+          <button id="voice-btn" class="secondary-btn">🎤</button>
+          <div class="quiz-footer">
+            <button id="back-btn" class="secondary-btn">Back</button>
+            <button id="next-btn" class="primary-btn">Next</button>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Result View -->
+    <section id="result-view" class="view">
+      <div class="container">
+        <div class="card result-card">
+          <div class="trophy">🏆</div>
+          <h1>Quiz Completed!</h1>
+          <p id="result-summary">You scored 0 out of 0</p>
+
+          <div class="score-ring">
+            <svg viewBox="0 0 100 100">
+              <circle cx="50" cy="50" r="45" class="ring-bg"></circle>
+              <circle cx="50" cy="50" r="45" id="score-fill" class="ring-fill"></circle>
+            </svg>
+            <div class="score-text">
+              <span id="score-percent">0%</span>
+              <small>Accuracy</small>
+            </div>
+          </div>
+
+          <div class="btn-group">
+            <button id="restart-btn" class="primary-btn">Try New Topic</button>
+            <button id="view-history-btn" class="secondary-btn">ALL QUIZZES</button>
+          <button id="download-unanswered-pdf" class="secondary-btn">Download Unanswered Quiz PDF</button>
+          <button id="download-answered-pdf" class="secondary-btn">Download Answered Quiz PDF</button>
+          </div>
+        </div>
+
+        <div id="review-container" class="review-list">
+          <h3>Review Answers</h3>
+          <!-- Review items injected here -->
+        </div>
+      </div>
+    </section>
+
+    <!-- History View -->
+    <section id="history-view" class="view">
+      <div class="container">
+        <div class="history-header">
+          <h1>Quiz History</h1>
+          <button id="history-back-btn" class="text-btn">Back to Home</button>
+        </div>
+        <div id="history-list" class="history-grid">
+          <!-- History items injected here -->
+        </div>
+      </div>
+    </section>
+  </div>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+  <script type="module" src="/script.js"></script>
+</body>
+
+</html>
